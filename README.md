@@ -1,5 +1,5 @@
 # Nonlocal Reaction-Advection-Diffusion Simulations in 2D
-Code to simulate the 2D version of Painter et al. (2015)'s nonlocal reaction-advection-diffusion system. See the paper here for details of the model and theory.
+Code to simulate the 2D version of Painter et al. (2015)'s nonlocal reaction-advection-diffusion system. See the paper [[here]] for details of the model and theory.
 
 [[here describe what each of the python files do...]]
 
