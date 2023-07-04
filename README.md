@@ -12,7 +12,7 @@ is carried out in `simulation_class.py`. Here, we use the method-of-lines, first
 ## Computing the Integral Term
 The nonlocal advection term in the integro-PDE is given by
 $$\boldsymbol{\nabla}\cdot \left(u(\boldsymbol{x},t)(1-u(\boldsymbol{x},t))\frac{\mu}{\xi^2}\int\int \boldsymbol{\hat{s}}\tilde{\Omega}\left(\frac{s}{\xi}\right)u(\boldsymbol{x+s}, t)ds_x ds_y\right).$$
-To compute this, we discretise space, then calculate the integral using a fast Fourier transform convolution method, then multiply by $\frac{\mu}{\xi^2}$ and the discretised $(u(\boldsymbol{x},t)(1-u(\boldsymbol{x},t))$, and then finally take the divergence using finite difference with the centred 3-point stencil. 
+To compute this, we discretise space, then calculate the integral using a fast Fourier transform convolution method, then multiply by $\frac{\mu}{\xi^2}$ and the discretised $(u(\boldsymbol{x},t)(1-u(\boldsymbol{x},t))$, and then finally take the divergence using a centred finite difference scheme. 
 
 More specifically, we discretise space, $\boldsymbol{x}=(x,y)^T$, into equally spaced points along a 2D grid, such that $u(x,y) \to u_{i,j}$, where $$i,j \in \mathbb{M}\equiv \lbrace 1-\frac{N}{2}, ..., -1, 0, 1, ..., \frac{N}{2} \rbrace,$$ where the number of mesh points, $N$, is an even positive integer, and the stepsize is given by $h=\frac{L}{N}$.
 
@@ -26,4 +26,4 @@ $\boldsymbol{I}\_{i,j}$ is equivalent to a discrete periodic convolution, where 
 
 where $\boldsymbol{K}\_{k,l}=\left[\boldsymbol{\hat{s}}\tilde{\Omega}\right]_{-k, -l}$. The final equality above follows from the convolution theorem,  where $\mathcal{F}$ is the 2D discrete (periodic) Fourier transform and $\mathcal{F}^{-1}$ is its inverse. We calculate these using SciPy's `scipy.fft.fft2` and `scipy.fft.ifft2` functions, respectively. See [here](https://docs.scipy.org/doc/scipy/reference/generated/scipy.fft.fft2.html) for details. We compute the integral term using this fast fourier method, which has complexity $\mathcal{O}(N^2\text{log}(N^2))$ and is thus significantly more efficient than direct summation, which has complexity $\mathcal{O}(N^4)$.
 
-As stated above, to obtain the full nonlocal advection term, we then compute $\boldsymbol{F}\_{i,j}=\frac{\mu}{\xi^2}u_{i,j}(1-u_{ij})\boldsymbol{I}\_{i,j}$, and then take the divergence with the centred 3-point stencil, $$\left[\boldsymbol{\nabla}\cdot \boldsymbol{F}\right]\_{i,j} = (F^{(x)}\_{i+1,j} - F^{(x)}\_{i-1,j})/2h  + (F^{(y)}\_{i,j+1} - F^{(y)}\_{i,j-1})/2h.$$
+As stated above, to obtain the full nonlocal advection term, we then compute $\boldsymbol{F}\_{i,j}=\frac{\mu}{\xi^2}u_{i,j}(1-u_{ij})\boldsymbol{I}\_{i,j}$, and then take the divergence with the centred finite difference scheme $$\left[\boldsymbol{\nabla}\cdot \boldsymbol{F}\right]\_{i,j} = (F^{(x)}\_{i+1,j} - F^{(x)}\_{i-1,j})/2h  + (F^{(y)}\_{i,j+1} - F^{(y)}\_{i,j-1})/2h.$$
