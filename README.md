@@ -11,7 +11,7 @@ The nonlocal advection term in the integro-PDE is given by
 $$\boldsymbol{\nabla}\cdot \left(u(\boldsymbol{x},t)(1-u(\boldsymbol{x},t))\frac{\mu}{\xi^2}\int\int \boldsymbol{\hat{s}}\tilde{\Omega}\left(\frac{s}{\xi}\right)u(\boldsymbol{x+s}, t)ds_x ds_y\right).$$
 To compute this, we discretise space, then calculate the integral using a fast fourier transform convolution method, then multiply by $\frac{\mu}{\xi^2}$ and the discretised $(u(\boldsymbol{x},t)(1-u(\boldsymbol{x},t))$, and then finally take the divergence using finite difference with the standard centred 3-point stencil. 
 
-More specifically, we discretise space, $\boldsymbol{x}=(x,y)^T$, into equally spaced points along a 2D grid, such that $u(x,y) \to u_{i,j}$, <br>where $i,j \in \mathbb{M}\equiv$ { $1-\frac{N}{2}, ..., -1, 0, 1, ..., \frac{N}{2}$ }, where the number of mesh points, $N$, is an even positive integer, and the stepsize is given by $h=\frac{L}{N}$.
+More specifically, we discretise space, $\boldsymbol{x}=(x,y)^T$, into equally spaced points along a 2D grid, such that $u(x,y) \to u_{i,j}$, where $i,j \in \mathbb{M}\equiv$ { $1-\frac{N}{2}, ..., -1, 0, 1, ..., \frac{N}{2}$ }, where the number of mesh points, $N$, is an even positive integer, and the stepsize is given by $h=\frac{L}{N}$.
 
 The integral term in the integro-PDE is thus discretised such that
 $$\boldsymbol{I}(\boldsymbol{x})\equiv\int\int \boldsymbol{\hat{s}}\tilde{\Omega}\left(\frac{s}{\xi}\right)u(\boldsymbol{x+s}, t)ds_x ds_y \longrightarrow \boldsymbol{I}\_{i,j}\equiv h^2  \displaystyle\sum\limits_{k=1-\frac{N}{2}}^{\frac{N}{2}-1}\displaystyle\sum\limits_{l=1-\frac{N}{2}}^{\frac{N}{2}-1} u_{i+k,j+l}\left[\boldsymbol{\hat{s}}\tilde{\Omega}\right]\_{k, l},$$
