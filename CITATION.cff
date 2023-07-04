@@ -12,6 +12,6 @@ authors:
     family-names: Jewell
     affiliation: University of Oxford
     orcid: 'https://orcid.org/0000-0001-8257-4910'
-repository-code: 'https://github.com/JunJewell/Nonlocal_RAD_2D'
+repository-code: 'https://github.com/JunJewell/NonlocalReactAdvectDiffuse2D'
 license: MIT
 date-released: '2023-07-04'
