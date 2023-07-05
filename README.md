@@ -1,6 +1,7 @@
 # Nonlocal Reaction-Advection-Diffusion Simulations in 2D
 Code to simulate the 2D version of Painter et al. (2015)'s nonlocal reaction-advection-diffusion system. See the paper [[here]] for details of the model and theory.
 
+## Code Structure
 Both the '1 species' and '2 species' folders contain the following: 
 * A `simulation_class.py` file, defining a class which takes inputs of model and simulation parameters, and has `simulate` and `simulate_with_progress` methods to output numerical solutions of the integro-PDEs that define the model. The latter method also periodically saves the solution data to csv files. See "Numerical Integration" below for details of the simulation method.
 * A `dispersion_relation.py` file, defining a class which takes inputs of model parameters, and has a method which takes the wavenumber, $k$, as input and outputs the corresponding linear growth rate, $\lambda$, according to the dispersion relation we derive from linear stability analysis.
@@ -9,6 +10,16 @@ Both the '1 species' and '2 species' folders contain the following:
 * An `example_read_data_and_plot.py` file, showing an example of reading in solution data and plotting the results.
 * A `matplotlib_style.py` file, defining the style and format of our graphs.
 
+## Example Animations
+The 'example animations' folder contains animations of the evolving density heatmaps for the examples of spatio-temporal dynamics in the paper. 
+
+For the 1 species system:
+* `animation_1_species_spatio-temporal_rho=10.mp4` corresponds to Fig.7(a)-(d) and uses parameters: **O2** kernel, $U=0.5$, $\mu=150$, $\xi=0.3$, $L=5$, $\rho=10$.
+* `animation_1_species_spatio-temporal_rho=20.mp4` corresponds to Fig.7(e)-(h) and uses parameters: **O2** kernel, $U=0.5$, $\mu=150$, $\xi=0.3$, $L=5$, $\rho=20$.
+* `animation_1_species_multistable_rho=35.mp4` corresponds to Fig.8(c)-(f) and uses a large perturbation and the parameters: **O2** kernel, $U=0.5$, $\mu=150$, $\xi=0.3$, $L=5$, $\rho=35$.
+
+For the 2 species system:
+* `animation_2_species_oscillate_u.mp4` and `animation_2_species_oscillate_v.mp4` show the evolution of species $u$ and $v$, respectively. They correspond to Fig 9, and use parameters: $U=0.25$, $V=0.25$, $D=1$, $\mu\_{uu}=-2000$, $\mu\_{uv}=-1000$, $\mu\_{vu}=1000$, $\mu\_{vv}=-2000$, $\xi\_{uu}=0.75$, $\xi\_{uv}=1$, $\xi\_{vu}=1$, $\xi\_{vv}=0.75$, $L=2.5$.   
 
 ## Numerical Integration
 Numerical integration of the integro-PDE
