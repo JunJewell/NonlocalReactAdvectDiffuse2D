@@ -6,8 +6,8 @@ Code to simulate the 2D version of Painter et al. (2015)'s nonlocal reaction-adv
 
 ## Numerical Integration
 Numerical integration of the integro-PDE
-$$\frac{\partial u}{\partial t} = \nabla^2 u + \rho u(1-\frac{u}{U}) -\boldsymbol{\nabla}\cdot\left(u(1-u)\frac{\mu}{\xi^{2}} \int\int\boldsymbol{\hat{s}}\tilde{\Omega}\left(\frac{s}{\xi}\right)u(\boldsymbol{x}+\boldsymbol{s},t) d s_x d s_y\right)$$
-is carried out in `simulation_class.py`. Here, we use the method-of-lines, first discretising in space and then integrating the resulting ODEs with backwards differentiation formulae. The latter is implemented through SciPy's `integrate.solve_ivp` function - see [here](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html) for details. The diffusion term, $\nabla^2 u$, is discretised using the standard centred 5-point stencil. For the integral term, we use the fast Fourier transform method described below. 
+$$\frac{\partial u}{\partial t} = \nabla^2 u + \rho u(1-\frac{u}{U}) -\boldsymbol{\nabla}\cdot\left(u(1-u)\frac{\mu}{\xi^{2}} \int\int\boldsymbol{\hat{s}}\tilde{\Omega}\left(\frac{s}{\xi}\right)u(\boldsymbol{x}+\boldsymbol{s},t) d s_x d s_y\right),$$
+and its 2 species equivalent, is carried out in `simulation_class.py`. Here, we use the method-of-lines, first discretising in space and then integrating the resulting ODEs with backwards differentiation formulae. The latter is implemented through SciPy's `integrate.solve_ivp` function - see [here](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html) for details. The diffusion term, $\nabla^2 u$, is discretised using the standard centred 5-point stencil. For the integral term, we use the fast Fourier transform method described below. 
 
 ## Computing the Integral Term
 The nonlocal advection term in the integro-PDE is given by
