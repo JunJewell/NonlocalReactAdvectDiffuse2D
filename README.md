@@ -1,7 +1,13 @@
 # Nonlocal Reaction-Advection-Diffusion Simulations in 2D
 Code to simulate the 2D version of Painter et al. (2015)'s nonlocal reaction-advection-diffusion system. See the paper [[here]] for details of the model and theory.
 
-[[here describe what each of the python files do...]]
+Both the '1 species' and '2 species' folders contain the following: 
+* A `simulation_class.py` file, defining a class which takes inputs of model and simulation parameters, and has `simulate` and `simulate_with_progress` methods to output numerical solutions of the integro-PDEs that define the model. The latter method also periodically saves the solution data to csv files. See "Numerical Integration" below for details of the simulation method.
+* A `dispersion_relation.py` file, defining a class which takes inputs of model parameters, and has a method which takes the wavenumber, $k$, as input and outputs the corresponding linear growth rate, $\lambda$, according to the dispersion relation we derive from linear stability analysis.
+* A `plot_class.py` file, defining a class which takes in solution data and has methods to plot and save graphs, including density heatmaps, dispersion relations, and animations of evolving density heatmaps.
+* An `example_simulate.py` file, showing an example of using the above classes to perform simulations and plot results.
+* An `example_read_data_and_plot.py` file, showing an example of reading in solution data and plotting the results.
+* A `matplotlib_style.py` file, defining the style and format of our graphs.
 
 
 ## Numerical Integration
