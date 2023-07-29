@@ -65,7 +65,7 @@ print("heatmaps...")
 #plot heatmap of u at final time   
 plotter.heatmap()   
 #plot heatmap of u at 4th time point                                  
-plotter.heatmp(time_index=4)
+plotter.heatmap(time_index=4)
 
 print("dispersion relation...")
 #plot dispersion relation with x,y limits calculated automatically
